@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres:12
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    command: ["postgres", "-c", "log_statement=all"]
+
+  aspnet:
+    build: 
+      context: ./aspnet
+      target: builder
+    volumes:
+      - ./aspnet:/app
+    ports:
+      - "8080:5236"
+    command: dotnet watch run
+
+  next-app:
+    build: 
+      context: ./next-app
+      target: builder
+    volumes:
+      - ./next-app:/app
+    ports:
+      - "8081:3000"
+    command: npm run dev
