@@ -1,0 +1,7 @@
+{
+  "name": "Next APP - Docker",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "next-app",
+  "workspaceFolder": "/app",
+  "shutdownAction": "stopCompose"
+}
